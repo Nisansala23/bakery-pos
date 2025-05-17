@@ -18,7 +18,11 @@ public class InventoryController {
     @Autowired
     private ProductRepository productRepository;
 
+<<<<<<< HEAD
     @GetMapping(value = { "", "/" })
+=======
+    @GetMapping
+>>>>>>> f3685ca3c64026ae8f7165bcffdf7a540b04967c
     public ResponseEntity<List<Product>> getAllProducts() {
         List<Product> products = productRepository.findAll();
         return new ResponseEntity<>(products, HttpStatus.OK);
@@ -36,7 +40,11 @@ public class InventoryController {
 
     @GetMapping("/category")
     public ResponseEntity<List<Product>> getProductsByCategory(@RequestParam String category) {
+<<<<<<< HEAD
         List<Product> products = productRepository.findByCategoryIgnoreCase(category);
+=======
+        List<Product> products = productRepository.findByCategory(category);
+>>>>>>> f3685ca3c64026ae8f7165bcffdf7a540b04967c
         if (!products.isEmpty()) {
             return new ResponseEntity<>(products, HttpStatus.OK);
         } else {

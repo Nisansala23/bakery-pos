@@ -8,6 +8,7 @@ import java.util.List;
 
 @Repository
 public interface ProductRepository extends JpaRepository<Product, Long> {
+<<<<<<< HEAD
 
     // Find products by category (case-insensitive for better UX)
     List<Product> findByCategoryIgnoreCase(String category);
@@ -21,3 +22,8 @@ public interface ProductRepository extends JpaRepository<Product, Long> {
     // Optional: Find all products sorted by name (ascending)
     List<Product> findAllByOrderByNameAsc();
 }
+=======
+    List<Product> findByCategory(String category);
+    List<Product> findAll(); // To get all products initially
+}
+>>>>>>> f3685ca3c64026ae8f7165bcffdf7a540b04967c
