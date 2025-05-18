@@ -8,22 +8,19 @@ import java.util.List;
 
 @Repository
 public interface ProductRepository extends JpaRepository<Product, Long> {
-<<<<<<< HEAD
 
     // Find products by category (case-insensitive for better UX)
     List<Product> findByCategoryIgnoreCase(String category);
 
-    // Optional: Find products by name (partial match, case-insensitive)
+    // Find products by partial name match (case-insensitive)
     List<Product> findByNameContainingIgnoreCase(String name);
 
-    // Optional: Find all products sorted by price (ascending)
+    // Sort all products by price ascending
     List<Product> findAllByOrderByPriceAsc();
 
-    // Optional: Find all products sorted by name (ascending)
+    // Sort all products by name ascending
     List<Product> findAllByOrderByNameAsc();
+
+    // Optionally include for clarity, though findAll() exists by default
+    List<Product> findAll();
 }
-=======
-    List<Product> findByCategory(String category);
-    List<Product> findAll(); // To get all products initially
-}
->>>>>>> f3685ca3c64026ae8f7165bcffdf7a540b04967c

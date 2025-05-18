@@ -18,11 +18,7 @@ public class InventoryController {
     @Autowired
     private ProductRepository productRepository;
 
-<<<<<<< HEAD
     @GetMapping(value = { "", "/" })
-=======
-    @GetMapping
->>>>>>> f3685ca3c64026ae8f7165bcffdf7a540b04967c
     public ResponseEntity<List<Product>> getAllProducts() {
         List<Product> products = productRepository.findAll();
         return new ResponseEntity<>(products, HttpStatus.OK);
@@ -31,20 +27,15 @@ public class InventoryController {
     @GetMapping("/{productId}")
     public ResponseEntity<Product> getProductById(@PathVariable Long productId) {
         Optional<Product> product = productRepository.findById(productId);
-        if (product.isPresent()) {
-            return new ResponseEntity<>(product.get(), HttpStatus.OK);
-        } else {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        }
+        return product.map(value ->
+                        new ResponseEntity<>(value, HttpStatus.OK))
+                .orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
     }
 
     @GetMapping("/category")
     public ResponseEntity<List<Product>> getProductsByCategory(@RequestParam String category) {
-<<<<<<< HEAD
+        // Make sure ProductRepository has findByCategoryIgnoreCase defined
         List<Product> products = productRepository.findByCategoryIgnoreCase(category);
-=======
-        List<Product> products = productRepository.findByCategory(category);
->>>>>>> f3685ca3c64026ae8f7165bcffdf7a540b04967c
         if (!products.isEmpty()) {
             return new ResponseEntity<>(products, HttpStatus.OK);
         } else {
